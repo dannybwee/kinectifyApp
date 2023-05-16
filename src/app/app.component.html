@@ -1,0 +1,29 @@
+<h1>My Book Collection</h1>
+<div style="text-align: center;">
+  <mat-form-field>
+    <input matInput placeholder="Search books" [formControl]="searchControl">
+  </mat-form-field>
+</div>
+
+<div class="content-container">
+<mat-sidenav-container mode = "over" autosize>
+  <mat-sidenav #sidenav mode="side" opened="false" position="end" class = "custom-sidenav">
+    <p *ngIf="selectedBook">
+      <li>{{selectedBook.title}}</li>
+      <li>{{selectedBook.pageCount}}</li>
+      <li>{{selectedBook.PublishedDate}}</li>
+      <li>{{selectedBook.shortDescription}}</li>
+      <img src = "{{selectedBook.thumbnailURL}}"/>
+      <li>{{selectedBook.authors}}</li>
+    </p>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div cdkDropList class="book-list" (cdkDropListDropped)="drop($event)">
+      <div *ngFor="let book of orderedBooks$ | async" cdkDrag class="book-item">
+        {{book.title}}
+        <button mat-button (click)="selectBook(book, sidenav)">More Info</button>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</div>
