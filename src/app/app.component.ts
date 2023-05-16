@@ -4,7 +4,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSidenav } from '@angular/material/sidenav';
 import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
