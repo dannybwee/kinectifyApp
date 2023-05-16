@@ -54,6 +54,8 @@ export class AppComponent {
       });
   }
 
+  /* Selects the book and populates the data based on book selected. 
+     It also checks if current book is selected to open / close sidenav */ 
   selectBook(book: any, sidenav: MatSidenav) {
     if(this.selectedBook === book){
       sidenav.close();
@@ -66,6 +68,7 @@ export class AppComponent {
     }
   }
 
+  //  Drag and drop ordering function which also checks local storage for order
   drop(event: CdkDragDrop<string[]>) {
     const orderedBooks = this.orderedBooks$.value;
     moveItemInArray(orderedBooks, event.previousIndex, event.currentIndex);
@@ -75,6 +78,7 @@ export class AppComponent {
     localStorage.setItem('bookOrder', JSON.stringify(updatedOrder));
   }
 
+  // Search Function for books
   private _filter(value: string): any[] {
     const filterValue = value.toLowerCase();
     return this.books.filter(book => book.title.toLowerCase().includes(filterValue));

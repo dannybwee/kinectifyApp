@@ -15,6 +15,7 @@ export class BookService {
     return this.http.get(this.BOOKS_URL, { responseType: 'text' })
       .pipe(
         map(data => {
+          // Regex to fix modify the text as it is not correctly a JSON file.
           let modifiedData = data.replace(/}\s*{/g, '},{');
           modifiedData = '[' + modifiedData + ']';
           return JSON.parse(modifiedData);
